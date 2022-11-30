@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
@@ -13,6 +13,18 @@ const LoginScreen = () => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			if (user) {
 				navigation.replace("Home")
+				db
+				.collection('users')
+				.doc(user.uid)
+				.get()
+				.then((doc) => {
+					if(!doc || !doc.exists) {
+						db.collection('users').doc(user.uid).set({
+							email: user.email,
+							uid: user.uid,
+						})
+					}
+				})
 			}
 		})
 
@@ -44,7 +56,7 @@ const LoginScreen = () => {
 	}
 
   return (
-	<KeyboardAvoidingView style={styles.container} behavior="height">
+	<KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
 	  <View style={styles.inputContainer}>
 		<TextInput
 			placeholder='Email'

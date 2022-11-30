@@ -17,6 +17,10 @@ const HomeScreen = () => {
 			alert(error.message)
 		})
 	}
+	
+	const moveToPlantList = () => {
+		navigation.replace("PlantList")
+	}
 
 	return (
 		<View style={styles.container}>
@@ -27,6 +31,12 @@ const HomeScreen = () => {
 		>
 			<Text style={styles.buttonText}>Sign Out</Text>
 		</TouchableOpacity>
+		<TouchableOpacity
+			style={styles.button}
+			onPress={moveToPlantList}
+			>
+				<Text>Plant List</Text>
+			</TouchableOpacity>
 		</View>
 	)
 }
