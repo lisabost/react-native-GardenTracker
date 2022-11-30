@@ -4,7 +4,7 @@ import { auth } from '../firebase'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
 
 	const navigation = useNavigation()
 

@@ -6,13 +6,15 @@ import { useNavigation } from '@react-navigation/native';
 const LoginScreen = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	const navigation = useNavigation()
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			if (user) {
-				navigation.replace("Home")
+				navigation.replace("Home");
+				setIsLoggedIn(true);
 				db
 				.collection('users')
 				.doc(user.uid)
@@ -36,6 +38,7 @@ const LoginScreen = () => {
 		.createUserWithEmailAndPassword(email, password)
 		.then((userCredentials) => {
 			const user = userCredentials.user;
+			setIsLoggedIn(true);
 			console.log('Registered in with: ', user.email);
 		})
 		.catch((error) => {
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: '#90ee90',
 	},
 	inputContainer: {
 		width: '80%',
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 	},
 	button: {
-		backgroundColor: '#0782F9',
+		backgroundColor: '#90C6EE',
 		width: '100%',
 		padding: 15,
 		borderRadius: 10,
@@ -122,16 +126,16 @@ const styles = StyleSheet.create({
 	buttonOutline: {
 		backgroundColor: 'white',
 		marginTop: 5,
-		borderColor: '#0782F9',
+		borderColor: '#90C6EE',
 		borderWidth: 2,
 	},
 	buttonText: {
-		color: 'white',
+		color: 'black',
 		fontWeight: '700',
 		fontSize: 16,
 	},
 	buttonOutlineText: {
-		color: '#0782F9',
+		color: '#90C6EE',
 		fontWeight: '700',
 		fontSize: 16,
 	},

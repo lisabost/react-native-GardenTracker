@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: '700',
 		// marginTop: 30,
-		marginBottom: 10,
+		// marginBottom: 10,
 		marginLeft: 20,
 	},
 	subheading: {
@@ -104,6 +104,8 @@ const styles = StyleSheet.create({
 		marginLeft: 20,
 	},
 	scrollView: {
+		paddingTop: 0,
+		marginTop: 0,
 		marginBottom: 70,
 	},
 	itemContainer: {
