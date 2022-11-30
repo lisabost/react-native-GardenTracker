@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { auth } from '../firebase'
 import { useNavigation } from '@react-navigation/native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const HomeScreen = () => {
 
@@ -19,11 +20,11 @@ const HomeScreen = () => {
 	}
 	
 	const moveToPlantList = () => {
-		navigation.replace("PlantList")
+		navigation.navigate("PlantList")
 	}
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 		<Text>Email: { auth.currentUser?.email }</Text>
 		<TouchableOpacity
 			style={styles.button}
@@ -31,13 +32,7 @@ const HomeScreen = () => {
 		>
 			<Text style={styles.buttonText}>Sign Out</Text>
 		</TouchableOpacity>
-		<TouchableOpacity
-			style={styles.button}
-			onPress={moveToPlantList}
-			>
-				<Text>Plant List</Text>
-			</TouchableOpacity>
-		</View>
+		</SafeAreaView>
 	)
 }
 

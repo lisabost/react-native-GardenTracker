@@ -20,12 +20,11 @@ const PlantListScreen = () => {
 				let list = [];
 				snapshot.forEach(doc => {
 					const data = doc.data();
-					console.log(doc.id, data)
+					// console.log(doc.id, data)
 					list.push({ id: doc.id, name: data.name })
 				})
 				setPlantList(list);
 				setLoading(false);
-				console.log('Plants!', plantList);
 			})
 	}
 
@@ -44,10 +43,11 @@ const PlantListScreen = () => {
 		getPlants();
 	}
 
-	const handleDelete = async (item) => {
-		db.collection('users').doc(auth.currentUser.uid).collection('plants').delete(item.id)
+	const handleDelete = async (id) => {
+		db.collection('users').doc(auth.currentUser.uid).collection('plants').doc(id).delete()
 			.then(() => {
-				console.log('deleted plant')
+				console.log('deleted plant with id of: ', id)
+				getPlants()
 			})
 			.catch((error) => {
 				alert(error.message)
@@ -65,10 +65,9 @@ const PlantListScreen = () => {
 				{ plantList.length > 0 &&
 					plantList.map((plant, index) => {
 						return (
-							<Text key={plant.id}>{index}, {plant.name}</Text>
-							// <View key={index} style={[styles.itemContainer]}>
-							// 	<PlantItem index={index + 1} plant={plant} deletePlant={handleDelete} />
-							// </View>
+							<View key={plant.id} style={[styles.itemContainer]}>
+								<PlantItem index={index + 1} plant={plant} deletePlant={handleDelete} />
+							</View>
 						)
 					})
 				}

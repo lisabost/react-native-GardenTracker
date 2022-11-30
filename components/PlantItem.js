@@ -3,15 +3,15 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React from 'react'
 
 const PlantItem = (props) => {
-	const { plant, deleteItem } = props;
+	const { index, plant, deletePlant } = props;
 	return (
 		<View style={styles.container}>
-			{/* <View style={styles.indexContainer}>
-				<Text style={styles.index}>{ props.index }</Text>
-			</View> */}
+			<View style={styles.indexContainer}>
+				<Text style={styles.index}>{ index }</Text>
+			</View>
 			<View style={styles.itemContainer}>
-				<Text style={styles.item}>{ props.plant.name }</Text>
-				<TouchableOpacity onPress={() => deleteItem()}>
+				<Text style={styles.item}>{ plant.name }</Text>
+				<TouchableOpacity onPress={() => deletePlant(plant.id)}>
 					<MaterialIcons style={styles.delete} name="delete" size={18} color="000" />
 				</TouchableOpacity>
 			</View>
