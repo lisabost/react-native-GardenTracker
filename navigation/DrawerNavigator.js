@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import BottomTabNavigator from './TabNavigator';
 import { MainStackNavigator, PlantListStackNavigator } from './StackNavigator';
@@ -10,11 +10,29 @@ import { auth } from '../firebase';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = ( {isLoggedIn} ) => {
+const DrawerNavigator = () => {
+	const [ route, setRoute ] = useState('');
+	const [ isLoggedIn, setIsLoggedIn] = useState(false);
+
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			if (user) {
+				setRoute("Home")
+				setIsLoggedIn(true);
+			}
+			else {
+				setRoute("Start")
+				setIsLoggedIn(false);
+			}
+		})
+
+		return unsubscribe
+	}, [])
+
   return (
-	<Drawer.Navigator initialRouteName='Start'>
-		<Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Start" component={MainStackNavigator} />
-		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Plant List" component={PlantListStackNavigator} /> }
+	<Drawer.Navigator initialRouteName={route}>
+		{ !isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Start" component={MainStackNavigator} />}
+		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Plant List" component={PlantListStackNavigator} />}
 		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Sign Out" component={HomeScreen} /> }
 	</Drawer.Navigator>
   )

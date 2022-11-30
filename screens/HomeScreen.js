@@ -12,7 +12,7 @@ const HomeScreen = (props) => {
 		auth
 			.signOut()
 			.then(() => {
-				navigation.replace("Login")
+				console.log('User logged out')
 			})
 			.catch((error) => {
 				alert(error.message)
