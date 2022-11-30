@@ -7,23 +7,17 @@ import PlantListScreen from './screens/PlantListScreen';
 import MainStackNavigator from './navigation/StackNavigator';
 import DrawerNavigator from './navigation/DrawerNavigator';
 import BottomTabNavigator from './navigation/TabNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 export default function App() {
-  return (
-    <NavigationContainer>
-		{/* <MainStackNavigator /> */}
-		<DrawerNavigator />
-		{/* <BottomTabNavigator /> */}
-    </NavigationContainer>
-  );
+	return (
+		<SafeAreaProvider>
+			<NavigationContainer>
+				<DrawerNavigator />
+			</NavigationContainer>
+		</SafeAreaProvider>
+	);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
