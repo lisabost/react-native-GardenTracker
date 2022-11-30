@@ -6,9 +6,11 @@ const PlantInputField = (props) => {
 	const [item, setItem] = useState();
 	
 	const handleAdd = (value) => {
-		console.log(value);
-		props.addPlant(value);
-		setItem(null);
+		if (value != '' && value != null) {
+			console.log(value);
+			props.addPlant(value);
+			setItem(null);
+		}
 	}
 
 	return (
