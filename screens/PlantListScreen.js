@@ -61,7 +61,11 @@ const PlantListScreen = () => {
 			<Text style={styles.heading}>Garden Plant List</Text>
 			<Text style={styles.subheading}>Keep track of what you want to plant in your garden.</Text>
 			<ScrollView style={[styles.scrollView]}>
-				{ loading && <Text>Loading...</Text>}
+				{ loading && 
+					<View style={[styles.itemContainer]}>
+						<Text>Loading...</Text>
+					</View>
+					}
 				{ plantList.length > 0 &&
 					plantList.map((plant, index) => {
 						return (

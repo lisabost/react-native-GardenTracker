@@ -11,8 +11,8 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   return (
 	<Drawer.Navigator>
-		<Drawer.Screen options={{ headerTitle: '' }} name="Plant List" component={PlantListStackNavigator} />
-		<Drawer.Screen options={{ headerTitle: '' }} name="Sign Out" component={HomeScreen} />
+		<Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Plant List" component={PlantListStackNavigator} />
+		<Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Sign Out" component={BottomTabNavigator} />
 	</Drawer.Navigator>
   )
 }
