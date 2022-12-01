@@ -19,10 +19,6 @@ const HomeScreen = (props) => {
 			})
 	}
 
-	const moveToPlantList = () => {
-		navigation.navigate("PlantList")
-	}
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.title}>Garden Tracking</Text>
