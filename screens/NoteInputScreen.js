@@ -19,6 +19,8 @@ const NoteInputScreen = () => {
 			db.collection('users').doc(auth.currentUser.uid).collection('notes').add(noteToSave)
 				.then(() => {
 					console.log("Note saved");
+					setTitle("");
+					setNote("");
 				})
 				.catch((error) => {
 					alert(error.message);
