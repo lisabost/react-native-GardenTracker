@@ -11,7 +11,6 @@ const PlantListScreen = () => {
 
 	useEffect(() => {
 		getPlants();
-		//console.log('plants?', plantList);
 	}, []);
 
 	const getPlants = async () => {
@@ -20,7 +19,6 @@ const PlantListScreen = () => {
 				let list = [];
 				snapshot.forEach(doc => {
 					const data = doc.data();
-					// console.log(doc.id, data)
 					list.push({ id: doc.id, name: data.name })
 				})
 				setPlantList(list);
@@ -65,7 +63,7 @@ const PlantListScreen = () => {
 					<View style={[styles.itemContainer]}>
 						<Text>Loading...</Text>
 					</View>
-					}
+				}
 				{ plantList.length > 0 &&
 					plantList.map((plant, index) => {
 						return (
