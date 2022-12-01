@@ -25,8 +25,12 @@ const GardenNotesScreen = () => {
 			})
 			.catch((error) => {
 				alert(error.message);
-			})
+			});
 	}
+
+	const handleView = () => {}
+	const handleEdit = () => {}
+	const handleDelete = () => {}
 
 	return (
 		<SafeAreaView style={styles.container}>
