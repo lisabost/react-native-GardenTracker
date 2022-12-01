@@ -93,8 +93,6 @@ const styles = StyleSheet.create({
 		color: '#000',
 		fontSize: 24,
 		fontWeight: '700',
-		// marginTop: 30,
-		// marginBottom: 10,
 		marginLeft: 20,
 	},
 	subheading: {
