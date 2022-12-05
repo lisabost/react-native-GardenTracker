@@ -56,7 +56,7 @@ const PlantListScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.heading}>Plant List</Text>
+			<Text style={styles.heading}>What's Planting?</Text>
 			<Text style={styles.subheading}>Keep track of what you want to plant in your garden.</Text>
 			<ScrollView style={[styles.scrollView]}>
 				{ loading && 
@@ -89,15 +89,17 @@ const styles = StyleSheet.create({
 	},
 	heading: {
 		color: '#000',
-		fontSize: 24,
+		fontSize: 30,
 		fontWeight: '700',
 		marginLeft: 20,
+		alignSelf: 'center',
 	},
 	subheading: {
 		color: '#000',
 		fontSize: 14,
 		fontWeight: '400',
 		marginLeft: 20,
+		alignSelf: 'center',
 	},
 	scrollView: {
 		paddingTop: 0,
