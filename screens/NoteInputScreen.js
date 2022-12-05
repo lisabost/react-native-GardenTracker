@@ -21,6 +21,7 @@ const NoteInputScreen = () => {
 					console.log("Note saved");
 					setTitle("");
 					setNote("");
+					navigation.navigate("DrawerNavigator", { screen: "Garden Notes" })
 				})
 				.catch((error) => {
 					alert(error.message);

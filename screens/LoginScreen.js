@@ -12,7 +12,7 @@ const LoginScreen = () => {
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			if (user) {
-				navigation.navigate("DrawerNavigator", { screen: "Home"});
+				navigation.navigate("DrawerNavigator", { screen: "Plant List"});
 				db
 					.collection('users')
 					.doc(user.uid)

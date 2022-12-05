@@ -13,7 +13,8 @@ const GardenNotesScreen = () => {
 
 	useEffect(() => {
 		getNotes();
-	}, []);
+		if(getNotes.length) getNotes();
+	}, [getNotes]);
 
 	const getNotes = async () => {
 		const response = await db.collection('users').doc(auth.currentUser.uid).collection('notes').get()
@@ -44,10 +45,6 @@ const GardenNotesScreen = () => {
 			});
 	}
 	
-	const moveToAddNote = () => {
-		navigation.navigate("AddNote");
-	}
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.heading}>Garden Notes</Text>
@@ -70,7 +67,7 @@ const GardenNotesScreen = () => {
 			</ScrollView>
 			<View style={styles.buttonContainer}>
 				<TouchableOpacity style={styles.button}>
-					<Text style={styles.buttonText} onPress={moveToAddNote}>Add Note</Text>
+					<Text style={styles.buttonText} onPress={() => {navigation.navigate("DrawerNavigator", { screen: "Add Note" })}}>Add Note</Text>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>

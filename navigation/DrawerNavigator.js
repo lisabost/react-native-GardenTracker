@@ -36,7 +36,7 @@ const DrawerNavigator = () => {
 		{ !isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Sign In" component={LoginScreen} />}
 		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Plant List" component={PlantListScreen} />}
 		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Garden Notes" component={GardenNotesScreen} /> }
-		{ isLoggedIn && <Drawer.Screen options={{headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Add Garden Note" component={NoteInputScreen} /> } 
+		{ isLoggedIn && <Drawer.Screen options={{headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Add Note" component={NoteInputScreen} /> } 
 		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Sign Out" component={HomeScreen} /> }
 	</Drawer.Navigator>
   )
