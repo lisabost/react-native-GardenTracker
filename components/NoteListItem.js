@@ -22,9 +22,6 @@ const NoteListItem = (props) => {
 				<TouchableOpacity onPress={() => handleView(note)}>
 					<MaterialIcons style={styles.icon} name="preview" size={20} color="000" />
 				</TouchableOpacity>
-				{/* <TouchableOpacity onPress={() => {}}>
-					<MaterialIcons style={styles.icon} name="edit" size={20} color="000" />
-				</TouchableOpacity> */}
 				<TouchableOpacity onPress={() => deleteNote(note.id)}>
 					<MaterialIcons style={styles.icon} name="delete" size={20} color="000" />
 				</TouchableOpacity>
