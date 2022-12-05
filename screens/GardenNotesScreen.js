@@ -16,6 +16,7 @@ const GardenNotesScreen = () => {
 			getNotes();
 			if(getNotes.length) getNotes();
 		});
+		return unsubscribe;
 	}, [navigation]);
 
 	const getNotes = async () => {
