@@ -1,9 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
 const NoteListItem = (props) => {
-	const { index, note, deleteNote } = props;
+	const { index, note, deleteNote} = props;
+
+	const navigation = useNavigation();
+
+	const handleView = (note) => {
+		navigation.navigate("ViewNote", {id: note.id, title: note.title, note: note.note});
+	 }
 
 	return (
 		<View style={styles.container}>
@@ -12,14 +19,14 @@ const NoteListItem = (props) => {
 			</View>
 			<View style={styles.itemContainer}>
 				<Text style={styles.item}>{note.title}</Text>
-				<TouchableOpacity onPress={() => {}}>
-					<MaterialIcons style={styles.icon} name="preview" size={18} color="000" />
+				<TouchableOpacity onPress={() => handleView(note)}>
+					<MaterialIcons style={styles.icon} name="preview" size={20} color="000" />
 				</TouchableOpacity>
-				<TouchableOpacity onPress={() => {}}>
-					<MaterialIcons style={styles.icon} name="edit" size={18} color="000" />
-				</TouchableOpacity>
+				{/* <TouchableOpacity onPress={() => {}}>
+					<MaterialIcons style={styles.icon} name="edit" size={20} color="000" />
+				</TouchableOpacity> */}
 				<TouchableOpacity onPress={() => deleteNote(note.id)}>
-					<MaterialIcons style={styles.icon} name="delete" size={18} color="000" />
+					<MaterialIcons style={styles.icon} name="delete" size={20} color="000" />
 				</TouchableOpacity>
 			</View>
 		</View>

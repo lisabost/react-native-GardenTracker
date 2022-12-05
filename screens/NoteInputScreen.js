@@ -4,10 +4,26 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { db, auth } from '../firebase';
 
-const NoteInputScreen = () => {
-	const [note, setNote] = useState("");
-	const [title, setTitle] = useState("");
+const NoteInputScreen = ({ route }) => {
+	const [note, setNote] = useState( editNote ?? "");
+	const [title, setTitle] = useState(editTitle ?? "");
 	const navigation = useNavigation();
+	const { editId, editTitle, editNote, editing } = route.params;
+
+	const handleEditNote = () => {
+		if (title != '' && title != null && note != '' && note != null) {
+			db.collection('users').doc(auth.currentUser.uid).collection('notes').doc(editId).update({title: title, note: note})
+			.then(() => {
+				console.log("Note Edited");
+				setTitle("");
+				setNote("");
+				navigation.navigate("DrawerNavigator", { screen: "Garden Notes" });
+			})
+			.catch((error) => {
+				alert(error.message);
+			})
+		}
+	}
 
 	const handleAddNote = (title, note) => {
 		// save our note to the database
@@ -21,7 +37,7 @@ const NoteInputScreen = () => {
 					console.log("Note saved");
 					setTitle("");
 					setNote("");
-					navigation.navigate("DrawerNavigator", { screen: "Garden Notes" })
+					navigation.navigate("DrawerNavigator", { screen: "Garden Notes" });
 				})
 				.catch((error) => {
 					alert(error.message);
@@ -32,14 +48,25 @@ const NoteInputScreen = () => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.heading}>Add Notes About Your Garden </Text>
-			<View style={styles.inputContainer}>
-				<TextInput value={title} onChangeText={text => setTitle(text)} placeholder="Enter title" placeholderTextColor={'#000'} style={styles.input} />
-				<TextInput multiline numberOfLines={8} value={note} onChangeText={text => setNote(text)} placeholder="Enter note..." placeholderTextColor={'#000'} style={styles.input} />
-			</View>
+			{editing &&
+				<View style={styles.inputContainer}>
+					<TextInput value={title} onChangeText={text => setTitle(text)} placeholder="Enter title" placeholderTextColor={'#000'} style={styles.input} />
+					<TextInput multiline numberOfLines={8} value={note} onChangeText={text => setNote(text)} placeholder="Enter note..." placeholderTextColor={'#000'} style={styles.input} />
+				</View>
+			}
+			{!editing &&
+				<View style={styles.inputContainer}>
+					<TextInput value={title} onChangeText={text => setTitle(text)} placeholder="Enter title" placeholderTextColor={'#000'} style={styles.input} />
+					<TextInput multiline numberOfLines={8} value={note} onChangeText={text => setNote(text)} placeholder="Enter note..." placeholderTextColor={'#000'} style={styles.input} />
+				</View>
+			}
 			<View style={styles.buttonContainer}>
-				<TouchableOpacity onPress={ () => {handleAddNote(title, note)} } style={styles.button}>
+				{!editing && <TouchableOpacity onPress={() => { handleAddNote(title, note) }} style={styles.button}>
 					<Text style={styles.buttonText}>Add Note</Text>
-				</TouchableOpacity>
+				</TouchableOpacity>}
+				{editing && <TouchableOpacity onPress={() => { handleEditNote() }} style={styles.button}>
+					<Text style={styles.buttonText}>Edit Note</Text>
+				</TouchableOpacity>}
 			</View>
 		</SafeAreaView>
 	)

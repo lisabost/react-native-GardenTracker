@@ -12,9 +12,11 @@ const GardenNotesScreen = () => {
 	const navigation = useNavigation();
 
 	useEffect(() => {
-		getNotes();
-		if(getNotes.length) getNotes();
-	}, [getNotes]);
+		const unsubscribe = navigation.addListener('focus', () => {
+			getNotes();
+			if(getNotes.length) getNotes();
+		});
+	}, [navigation]);
 
 	const getNotes = async () => {
 		const response = await db.collection('users').doc(auth.currentUser.uid).collection('notes').get()
@@ -32,8 +34,6 @@ const GardenNotesScreen = () => {
 			});
 	}
 
-	const handleView = () => { }
-	const handleEdit = () => { }
 	const handleDelete = async (id) => {
 		db.collection('users').doc(auth.currentUser.uid).collection('notes').doc(id).delete()
 			.then(() => {
@@ -59,7 +59,7 @@ const GardenNotesScreen = () => {
 					noteList.map((note, index) => {
 						return (
 							<View key={note.id} style={styles.itemContainer}>
-								<NoteListItem index={index + 1} note={note} onView={() => { }} onEdit={() => { }} deleteNote={handleDelete} />
+								<NoteListItem index={index + 1} note={note} deleteNote={handleDelete} />
 							</View>
 						)
 					})
@@ -67,7 +67,11 @@ const GardenNotesScreen = () => {
 			</ScrollView>
 			<View style={styles.buttonContainer}>
 				<TouchableOpacity style={styles.button}>
-					<Text style={styles.buttonText} onPress={() => {navigation.navigate("DrawerNavigator", { screen: "Add Note" })}}>Add Note</Text>
+					<Text style={styles.buttonText} 
+						onPress={() => {navigation.navigate("DrawerNavigator", { screen: "Add Note", params: {editId: "", editTitle: "", editNote: "", editing: false} })}}
+					>
+						Add Note
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>

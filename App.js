@@ -5,12 +5,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import PlantListScreen from './screens/PlantListScreen';
+import ViewNoteScreen from './screens/ViewNoteScreen';
 import MainStackNavigator from './navigation/StackNavigator';
 import DrawerNavigator from './navigation/DrawerNavigator';
-import BottomTabNavigator from './navigation/TabNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { auth, db } from './firebase';
-import { useNavigation } from '@react-navigation/native';
+// import { auth, db } from './firebase';
+// import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -22,7 +22,7 @@ export default function App() {
 				<Stack.Navigator initialRouteName='Login'>
 					<Stack.Screen name="DrawerNavigator" component={DrawerNavigator} options={{ headerShown: false }}/>
 					<Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
-					{/* <Stack.Screen /> */}
+					<Stack.Screen name="ViewNote" component={ViewNoteScreen} options={{ headerShown: false }}/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>
