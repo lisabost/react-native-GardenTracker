@@ -4,14 +4,21 @@ import { auth, db } from '../firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PlantItem from '../components/PlantItem';
 import PlantInputField from '../components/PlantInputField';
+import { useNavigation } from '@react-navigation/native';
 
 const PlantListScreen = () => {
 	const [plantList, setPlantList] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	const navigation = useNavigation();
+
 	useEffect(() => {
-		getPlants();
-	}, []);
+		const unsubscribe = navigation.addListener('focus', () => {
+			getPlants();
+			if(getPlants.length) getPlants();
+		});
+		return unsubscribe;
+	}, [navigation]);
 
 	const getPlants = async () => {
 		const response = await db.collection('users').doc(auth.currentUser.uid).collection('plants').get()
