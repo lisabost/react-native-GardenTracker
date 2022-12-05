@@ -11,14 +11,19 @@ import BottomTabNavigator from './navigation/TabNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { auth, db } from './firebase';
 import { useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 	return (
 		<SafeAreaProvider>
 			<NavigationContainer>
-				<DrawerNavigator /> 
+				<Stack.Navigator initialRouteName='Login'>
+					<Stack.Screen name="DrawerNavigator" component={DrawerNavigator} options={{ headerShown: false }}/>
+					<Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+					{/* <Stack.Screen /> */}
+				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>
 	);

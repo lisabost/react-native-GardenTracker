@@ -21,8 +21,8 @@ const HomeScreen = (props) => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.title}>Garden Tracking</Text>
-			<Text style={styles.subtitle}>Welcome to the garden tracking app. Keep track of what plants you want to plant and any notes about your garden plots.</Text>
+			<Text style={styles.title}>Thanks for using Garden Tracking</Text>
+			<Text style={styles.subtitle}>Keep track of what plants you want to plant and any notes about your garden plots.</Text>
 			<Text>Email: {auth.currentUser?.email}</Text>
 			<TouchableOpacity
 				style={styles.button}

@@ -19,7 +19,7 @@ const DrawerNavigator = () => {
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			if (user) {
-				setRoute("Home")
+				setRoute("Plant List")
 				setIsLoggedIn(true);
 			}
 			else {
@@ -33,8 +33,8 @@ const DrawerNavigator = () => {
 
   return (
 	<Drawer.Navigator initialRouteName={route}>
-		{ !isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Start" component={MainStackNavigator} />}
-		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Plant List" component={PlantListStackNavigator} />}
+		{ !isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Sign In" component={LoginScreen} />}
+		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Plant List" component={PlantListScreen} />}
 		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Garden Notes" component={GardenNotesScreen} /> }
 		{ isLoggedIn && <Drawer.Screen options={{headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Add Garden Note" component={NoteInputScreen} /> } 
 		{ isLoggedIn && <Drawer.Screen options={{ headerTitle: '', headerStyle: { backgroundColor: '#90C6EE' } }} name="Sign Out" component={HomeScreen} /> }
