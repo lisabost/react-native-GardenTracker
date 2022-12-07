@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { auth, db } from '../firebase';
 import PlantItem from '../components/PlantItem';
 import PlantInputField from '../components/PlantInputField';
-import { useNavigation } from '@react-navigation/native';
 
 const PlantListScreen = () => {
 	const [plantList, setPlantList] = useState([]);

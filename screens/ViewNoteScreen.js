@@ -1,7 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ViewNoteScreen = ({ route, navigation }) => {
 	const { id, title, note } = route.params;

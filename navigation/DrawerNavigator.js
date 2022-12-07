@@ -1,12 +1,10 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import BottomTabNavigator from './TabNavigator';
-import { MainStackNavigator, PlantListStackNavigator } from './StackNavigator';
+import { auth } from '../firebase';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PlantListScreen from '../screens/PlantListScreen';
-import { auth } from '../firebase';
 import GardenNotesScreen from '../screens/GardenNotesScreen';
 import NoteInputScreen from '../screens/NoteInputScreen';
 

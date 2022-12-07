@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../firebase';
 import { useNavigation } from '@react-navigation/native';
+import { auth, db } from '../firebase';
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('');

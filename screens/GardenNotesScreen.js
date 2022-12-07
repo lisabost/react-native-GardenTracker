@@ -1,9 +1,9 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useNavigation } from '@react-navigation/native'
 import NoteListItem from '../components/NoteListItem'
 import { db, auth } from '../firebase'
-import { useNavigation } from '@react-navigation/native'
 
 const GardenNotesScreen = () => {
 	const [noteList, setNoteList] = useState([]);

@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
-import PlantListScreen from './screens/PlantListScreen';
 import ViewNoteScreen from './screens/ViewNoteScreen';
 import MainStackNavigator from './navigation/StackNavigator';
 import DrawerNavigator from './navigation/DrawerNavigator';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import { auth, db } from './firebase';
-// import { useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 const Stack = createNativeStackNavigator();
 
